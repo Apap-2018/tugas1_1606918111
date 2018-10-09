@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/wwww.thymeleaf.org"> 
+<head>
+
+    <title>Detail Jabatan</title>
+    
+</head>
+<body th:object="${jabatan}">
+    <h1 th:text=" 'Detail Jabatan ' + *{nama} "></h1>
+    <p th:text=" 'Nama Jabatan: ' + *{nama}"></p>
+    <p th:text=" 'Deskripsi Jabatan: ' + *{deskripsi}"></p>
+    <p th:text=" 'Gaji Pokok: ' + *{gajiPokok}"></p>
+</body>
+</html>

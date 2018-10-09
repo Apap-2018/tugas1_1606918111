@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Cari Pegawai</title>
+
+</head>
+<body>
+    <h3>Cari pegawai berdasarkan NIP</h3>
+    <form th:action="@{/pegawai/view}" method="GET">
+        NIP: <br>
+            <input type="text" name="nip"/>
+            <button type="submit">Cari</button>
+    </form>
+
+    <h3>Lihat Detail Jabatan</h3>
+    <form th:action="@{/jabatan/view(idJabatan=${idJabatan})}" method=GET>
+        <select type="text" name="idJabatan">
+            <option th:each="jabatan: ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
+        </select>          
+        <button type="submit">Cari</button>        
+    </form>
+
+
+    
+</body>
+</html>

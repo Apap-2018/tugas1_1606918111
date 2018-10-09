@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/wwww.thymeleaf.org"> 
+<head>
+    <!-- <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>Cari Pegawai</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+<body th:switch="${pegawai}">
+    <h3 th:case="null">Maaf pegawai tidak ditemukan</h3>
+    <div th:object="${pegawai}">
+        <p th:text=" 'NIP: '+ *{nip}"></p>
+        <p th:text=" 'Nama: '+ *{nama}"></p>
+        <p th:text=" 'Tempat lahir: '+ *{tempatLahir}"></p>
+        <p th:text=" 'Tahun lahir: '+ *{tanggalLahir}"></p>
+        <p th:text=" 'Tahun masuk: '+ *{tahunMasuk}"></p>
+        <p th:text=" 'Nama instansi: '+ *{instansi.nama}"></p>
+
+        <p>Jabatan: </p>
+        <ul th:each="jabatan: *{jabatanPegawai}">
+            <li th:text="${jabatan.jabatan.namaJabatan}"></li>
+        </ul>
+        
+
+
+    </div>
+    
+</body>
+</html>

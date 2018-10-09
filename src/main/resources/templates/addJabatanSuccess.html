@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/wwww.thymeleaf.org"> 
+<head>
+    <title>Cari Pegawai</title>
+
+</head>
+<body th:switch="${jabatan}">
+    <h3 th:case="null">Maaf jabatan tidak berhasil ditambah</h3>
+    <div th:object="${jabatan}">
+        <p th:text=" 'Nama: '+ *{nama}"></p>
+        <p th:text=" 'Deskripsi: '+ *{deskripsi}"></p>
+        <p th:text=" 'Gaji: '+ *{gajiPokok}"></p>
+    </div>
+    
+</body>
+</html>

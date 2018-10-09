@@ -2,7 +2,9 @@ package com.apap.tugas1.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,26 +34,61 @@ public class JabatanModel implements Serializable {
     @NotNull
     @Size(max=255)
     @Column(name="nama", nullable=false)
-    private String namaJabatan;
+    private String nama;
 
     @NotNull
     @Size(max=255)
     @Column(name="deskripsi", nullable=false)
-    private String deskripsiJabatan;
+    private String deskripsi;
+
+    public String getNama() {
+        return this.nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getDeskripsi() {
+        return this.deskripsi;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
 
     @NotNull
     @Column(name="gaji_pokok")
     private Double gajiPokok;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_instansiPegawai", referencedColumnName = "id_instansi", nullable=false)
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JsonIgnore
-    private InstansiModel instansi;
+    @OneToMany(mappedBy="jabatan", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE)
+    private Set<JabatanPegawaiModel> pegawaiInstansi;
 
+    public long getId() {
+        return this.id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
+   
 
+    public Double getGajiPokok() {
+        return this.gajiPokok;
+    }
+
+    public void setGajiPokok(Double gajiPokok) {
+        this.gajiPokok = gajiPokok;
+    }
+
+    public Set<JabatanPegawaiModel> getPegawaiInstansi() {
+        return this.pegawaiInstansi;
+    }
+
+    public void setPegawaiInstansi(Set<JabatanPegawaiModel> pegawaiInstansi) {
+        this.pegawaiInstansi = pegawaiInstansi;
+    }
 
 
 }
