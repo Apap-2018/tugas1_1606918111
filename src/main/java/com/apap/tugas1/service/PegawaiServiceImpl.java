@@ -46,6 +46,8 @@ public class PegawaiServiceImpl implements PegawaiService {
 
     @Override
     public void updatePegawai(PegawaiModel pegawai) {
+        pegawai.setNip(this.generateNip(pegawai));
+
         PegawaiModel findPegawai = pegawaiDb.getOne(pegawai.getId());
         findPegawai.setNama(pegawai.getNama());
         findPegawai.setTempatLahir(pegawai.getTempatLahir());
@@ -101,6 +103,5 @@ public class PegawaiServiceImpl implements PegawaiService {
         return pegawaiDb.findByInstansiOrderByTanggalLahirAsc(instansi).get(0);
     }
 
-    
 
 }  

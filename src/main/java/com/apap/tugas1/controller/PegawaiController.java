@@ -105,12 +105,6 @@ public class PegawaiController{
         return "addPegawai";
     }
 
-    @RequestMapping(value= "/pegawai/tambah", method= RequestMethod.POST)
-    private String addPegawaiSuccess(@ModelAttribute PegawaiModel pegawai, Model model){
-        pegawaiService.addPegawai(pegawai);
-        model.addAttribute("pegawai", pegawai);
-        return "addPegawaiSubmit";
-    }
 
     @RequestMapping(value="/pegawai/ubah", method= RequestMethod.GET)
     public String updatePegawai(@RequestParam(value="nip") String nip, Model model){
@@ -126,9 +120,10 @@ public class PegawaiController{
         return "updatePegawai";
     }
 
-    @RequestMapping(value="/pegawai/ubah", method= RequestMethod.POST)
-    public String updatePegawaiSubmit(@ModelAttribute PegawaiModel pegawai, Model model){
-        pegawaiService.updatePegawai(pegawai);
+    @RequestMapping(value="/pegawai/ubah", method=RequestMethod.POST)
+    public String editPegawaiSubmit(@ModelAttribute PegawaiModel pegawai, Model model, BindingResult bindingResult) {
+        pegawaiService.addPegawai(pegawai);
+        model.addAttribute("pegawai", pegawai);
         return "updatePegawaiSubmit";
     }
 

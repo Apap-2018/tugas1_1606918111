@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/wwww.thymeleaf.org"> 
+<head>
+    <title>Update pegawai</title>
+
+</head>
+<body>
+    <h3>Sukses!</h3>
+    <div th:object="${pegawai}">
+        <p th:text=" 'Pegawai dengan nama '+ *{nama} + ' berhasil diupdate' "></p>
+
+    </div>
+    
+</body>
+</html>
