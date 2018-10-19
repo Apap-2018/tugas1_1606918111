@@ -4,24 +4,51 @@
     <!-- <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <title>Cari Pegawai</title>
+    <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/fragment :: js" th:remove="tag"></Object> 
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script> -->
 </head>
-<body th:switch="${pegawai}">
-    <h3 th:case="null">Maaf pegawai tidak ditemukan</h3>
-    <div th:object="${pegawai}">
-        <p th:text=" 'NIP: '+ *{nip}"></p>
-        <p th:text=" 'Nama: '+ *{nama}"></p>
-        <p th:text=" 'Tempat lahir: '+ *{tempatLahir}"></p>
-        <p th:text=" 'Tahun lahir: '+ *{tanggalLahir}"></p>
-        <p th:text=" 'Tahun masuk: '+ *{tahunMasuk}"></p>
-        <p th:text=" 'Nama instansi: '+ *{instansi.nama}"></p>
+<body  th:switch="${pegawai}">
+    <nav th:replace="fragments/fragment :: navbar(content='Home')"></nav>
+    <br>
+    <div class="container" th:object="${pegawai}">
+            <h3>Data Pegawai</h3>
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-4">NIP</label>
+                <div class="col-sm-5">
+                    <p th:text="*{nama}"></p>
+                </div>
+                
+                <label class="col-sm-4">Tempat lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tempatLahir}"></p>
+                </div> 
 
-        <p>Jabatan: </p>
-        <ul th:each="jabatan: *{jabatanPegawai}">
-            <li th:text="${jabatan.jabatan.namaJabatan}"></li>
-        </ul>
+                <label class="col-sm-4">Tanggal lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tanggalLahir}"></p>
+                </div> 
+
+                <label class="col-sm-4">Tahun masuk</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tahunMasuk}"></p>
+                </div> 
+
+                <label class="col-sm-4">Nama instansi</label>
+                <div class="col-sm-5">
+                    <p th:text="*{instansi.nama}"></p>
+                </div>
+
+                <label class="col-sm-4">Jabatan</label>
+                <div class="col-sm-5" th:each="jabatan : *{jabatanPegawai}">
+                    <p th:text="${jabatan.jabatan.nama}"></p>
+                </div>
+    
+
+        <a th:href="@{/pegawai/ubah(nip=*{nip})}"><button type="submit" method=GET>ubah</button></a>
         
 
 

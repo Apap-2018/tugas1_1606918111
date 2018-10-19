@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/wwww.thymeleaf.org"> 
+<head>
+    <title>Cari Pegawai</title>
+
+</head>
+<body>
+    <h3>Sukses!</h3>
+    <div th:object="${pegawai}">
+        <p th:text=" 'Pegawai dengan NIP '+ *{nip} + ' berhasil ditambahkan' "></p>
+
+    </div>
+    
+</body>
+</html>

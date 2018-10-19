@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Home</title>
+    <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/fragment :: js" th:remove="tag"></Object>  
+
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar(content='Home')"></nav>
+    <div class="container">
+        <br><br><br>
+            <h1>Sistem informasi kepegawaian</h1>
+            <p>Selamat datang di sistem informasi kepegawaian</p>
+
+            <hr>
+
+            <h3>Data Pegawai Termuda</h3>
+            <br>
+            <div class="form-group row" th:object="${termuda}">
+                <label class="col-sm-4">NIP</label>
+                <div class="col-sm-5">
+                    <p th:text="*{nama}"></p>
+                </div>
+                
+
+                <label class="col-sm-4">Tempat lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tempatLahir}"></p>
+                </div> 
+
+                <label class="col-sm-4">Tanggal lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tanggalLahir}"></p>
+                </div> 
+
+                <label class="col-sm-4">Tahun masuk</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tahunMasuk}"></p>
+                </div> 
+
+                <label class="col-sm-4">Nama instansi</label>
+                <div class="col-sm-5">
+                    <p th:text="*{instansi.nama}"></p>
+                </div>
+
+                <label class="col-sm-4">Jabatan</label>
+                <div class="col-sm-5" th:each="jabatan : *{jabatanPegawai}">
+                    <p th:text="${jabatan.jabatan.nama}"></p>
+                </div> 
+
+
+            </div> <br><br>
+
+            <h3>Data Pegawai Tertua</h3>
+            <br>
+            <div class="form-group row" th:object="${tertua}">
+                <label class="col-sm-4">NIP</label>
+                <div class="col-sm-5">
+                    <p th:text="*{nama}"></p>
+                </div>
+                
+
+                <label class="col-sm-4">Tempat lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tempatLahir}"></p>
+                </div> 
+
+                <label class="col-sm-4">Tanggal lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tanggalLahir}"></p>
+                </div> 
+
+                <label class="col-sm-4">Tahun masuk</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tahunMasuk}"></p>
+                </div> 
+
+                <label class="col-sm-4">Nama instansi</label>
+                <div class="col-sm-5">
+                    <p th:text="*{instansi.nama}"></p>
+                </div>
+
+                <label class="col-sm-4">Jabatan</label>
+                <div class="col-sm-5" th:each="jabatan : *{jabatanPegawai}">
+                    <p th:text="${jabatan.jabatan.nama}"></p>
+                </div> 
+
+
+    </div>
+    
+</body>
+</html>

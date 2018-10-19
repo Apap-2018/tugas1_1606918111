@@ -2,26 +2,55 @@
 <html>
 <head>
 
-    <title>Cari Pegawai</title>
+    <title>Home</title>
+    <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/fragment :: js" th:remove="tag"></Object>  
 
 </head>
 <body>
-    <h3>Cari pegawai berdasarkan NIP</h3>
-    <form th:action="@{/pegawai/view}" method="GET">
-        NIP: <br>
-            <input type="text" name="nip"/>
-            <button type="submit">Cari</button>
-    </form>
+    <nav th:replace="fragments/fragment :: navbar(content='Home')"></nav>
+    <div class="container">
+        <br><br><br>
+            <h1>Sistem informasi kepegawaian</h1>
+            <p>Selamat datang di sistem informasi kepegawaian</p>
 
-    <h3>Lihat Detail Jabatan</h3>
-    <form th:action="@{/jabatan/view(idJabatan=${idJabatan})}" method=GET>
-        <select type="text" name="idJabatan">
-            <option th:each="jabatan: ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
-        </select>          
-        <button type="submit">Cari</button>        
-    </form>
+            <hr>
+            
+            <h3>Cari pegawai berdasarkan NIP</h3>
+            <form th:action="@{/pegawai/view}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" name="nip" class="form-control" placeholder="NIP Pegawai" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit" id="button-addon2">Cari</button>
+                </div>
+            </div>
+            </form>
+
+            <br> <br>
+
+          
+            <h3>Lihat Detail Jabatan</h3>
+
+            <form th:action="@{/jabatan/view(idJabatan=${idJabatan})}" method=GET>
+                <select type="text" name="idJabatan">
+                    <option th:each="jabatan: ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
+                </select>          
+                <button type="submit">Cari</button>        
+            </form><br><br>
+
+            <h3>Data Pegawai Termuda dan Tertua</h3>
+            <form th:action="@{/pegawai/tertua-termuda(idInstansi=${idInstansi})}" method=GET>
+                <select type="text" name="idInstansi">
+                    <option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"></option>
+                </select>          
+                <button type="submit">Cari</button>        
+            </form>
+
+            
 
 
+
+    </div>
     
 </body>
 </html>

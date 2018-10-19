@@ -3,12 +3,29 @@
 <head>
 
     <title>Detail Jabatan</title>
+    <Object th:include="fragments/navbarDetail :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/navbarDetail :: js" th:remove="tag"></Object>  
     
 </head>
 <body th:object="${jabatan}">
-    <h1 th:text=" 'Detail Jabatan ' + *{nama} "></h1>
-    <p th:text=" 'Nama Jabatan: ' + *{nama}"></p>
-    <p th:text=" 'Deskripsi Jabatan: ' + *{deskripsi}"></p>
-    <p th:text=" 'Gaji Pokok: ' + *{gajiPokok}"></p>
+    <nav th:replace="fragments/navbarDetail :: navbarBack"></nav>
+    <br>
+    <div class="container">
+
+        <h3 th:text=" 'Detail Jabatan ' + *{nama} "></h3>
+        <p th:text=" 'Nama Jabatan: ' + *{nama}"></p>
+        <p th:text=" 'Deskripsi Jabatan: ' + *{deskripsi}"></p>
+        <p th:text=" 'Gaji Pokok: ' + *{gajiPokok}"></p>
+
+        <br>
+
+        <form th:action="@{/jabatan/hapus}" method=POST>
+            <input type="hidden" th:field="*{id}">
+            <button type="submit">DELETE</button>
+        </form>
+
+        <a th:href="@{/jabatan/ubah(idJabatan=*{id})}"><button type="submit" method=GET>UPDATE</button></a>
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tambah Jabatan</title>
+    <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/fragment :: js" th:remove="tag"></Object>    
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <br><br>
+    <div class="container">
+        <h3>Tambah Pegawai</h3>
+        <br>
+        <form th:action="@{/pegawai/tambah}" th:object="${pegawai}" method="POST">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nama</label>
+                <div class="col-sm-5">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tempat lahir</label>
+                <div class="col-sm-5">
+                    <input type="text" name="tempatLahir" class="form-control" placeholder="Tempat lahir">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tanggal lahir</label>
+                <div class="col-sm-5">
+                    <input type="date" name="tanggalLahir" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tahun masuk</label>
+                <div class="col-sm-5">
+                    <input type="number" name="tahunMasuk" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Provinsi</label>
+                <div class="col-sm-5">
+                    <select type="text" name="provinsi" id="provinsi">
+                        <option th:each="provinsi: ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
+                    </select> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Instansi</label>
+                <div class="col-sm-5">
+                    <select type="text" name="instansi" id="instansi">
+                        <option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:prov="${instansi.provinsi.id}" th:text="${instansi.nama}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Jabatan</label>
+                <div class="col-sm-5" >
+                        <select type="text" th:each="jabatan, iterator : *{jabatanPegawai}" th:field="*{jabatanPegawai[__${iterator.index}__].jabatan}">
+                            <!-- th:field = nambahin jabatan ke jabatanPegawai, soalnya gabisa pake name kayak attribute biasa -->
+                            <!-- id dari dropdown nanti di pass ke th:field -->
+                            <option th:each="jbtn: ${listJabatan}" th:value="${jbtn.id}" th:text="${jbtn.nama}" ></option>
+                        </select> 
+                </div>
+            </div>
+            
+            
+            <button type="submit" name="addRow" class="btn btn-primary btn-sm">Add jabatan</button>
+    
+            <br><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+<script>
+
+    $('#provinsi').on('click',function() {
+        $('#instansi').children('option').each(function(){
+            if($(this).attr('prov') !== $('#provinsi').val() ) $(this).attr('disabled', 'disabled')
+            else $(this).removeAttr('disabled')
+        }) 
+    })
+
+    $('#provinsi').trigger('click')
+
+
+</script>

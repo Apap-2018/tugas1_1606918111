@@ -2,6 +2,9 @@ package com.apap.tugas1.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,7 +33,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class PegawaiModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(max=255)
@@ -65,13 +68,13 @@ public class PegawaiModel implements Serializable {
 
     //source: https://hellokoding.com/jpa-many-to-many-extra-columns-relationship-mapping-example-with-spring-boot-maven-and-mysql/
     @OneToMany(mappedBy="pegawai", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE)
-    private Set<JabatanPegawaiModel> jabatanPegawai;
+    private List<JabatanPegawaiModel> jabatanPegawai;
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -123,13 +126,25 @@ public class PegawaiModel implements Serializable {
         this.instansi = instansi;
     }
 
-    public Set<JabatanPegawaiModel> getJabatanPegawai() {
+    public List<JabatanPegawaiModel> getJabatanPegawai() {
         return this.jabatanPegawai;
     }
 
-    public void setJabatanPegawai(Set<JabatanPegawaiModel> jabatanPegawai) {
+    public void setJabatanPegawai(List<JabatanPegawaiModel> jabatanPegawai) {
         this.jabatanPegawai = jabatanPegawai;
     }
+
+    public String tanggalLahirToStr() {
+		DateFormat dateFormat = new SimpleDateFormat("ddMMyy");
+		String tglLahir = dateFormat.format(tanggalLahir);
+		return tglLahir;
+	}
+	
+	public String tahunLahirToStr() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String tahunLahir = dateFormat.format(tanggalLahir);
+		return tahunLahir;
+	}
 
 
 

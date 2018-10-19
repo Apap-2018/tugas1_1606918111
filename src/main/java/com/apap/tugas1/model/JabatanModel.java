@@ -60,9 +60,11 @@ public class JabatanModel implements Serializable {
     @NotNull
     @Column(name="gaji_pokok")
     private Double gajiPokok;
+    
 
-    @OneToMany(mappedBy="jabatan", fetch = FetchType.LAZY, cascade=CascadeType.REMOVE)
-    private Set<JabatanPegawaiModel> pegawaiInstansi;
+    //https://vladmihalcea.com/a-beginners-guide-to-jpa-and-hibernate-cascade-types/
+    @OneToMany(mappedBy="jabatan", fetch = FetchType.LAZY, cascade=CascadeType.PERSIST)
+    private Set<JabatanPegawaiModel> jabatanPegawai;
 
     public long getId() {
         return this.id;
@@ -72,8 +74,6 @@ public class JabatanModel implements Serializable {
         this.id = id;
     }
 
-   
-
     public Double getGajiPokok() {
         return this.gajiPokok;
     }
@@ -82,12 +82,12 @@ public class JabatanModel implements Serializable {
         this.gajiPokok = gajiPokok;
     }
 
-    public Set<JabatanPegawaiModel> getPegawaiInstansi() {
-        return this.pegawaiInstansi;
+    public Set<JabatanPegawaiModel> getJabatanPegawai() {
+        return this.jabatanPegawai;
     }
 
-    public void setPegawaiInstansi(Set<JabatanPegawaiModel> pegawaiInstansi) {
-        this.pegawaiInstansi = pegawaiInstansi;
+    public void setJabatanPegawai(Set<JabatanPegawaiModel> jabatanPegawai) {
+        this.jabatanPegawai = jabatanPegawai;
     }
 
 

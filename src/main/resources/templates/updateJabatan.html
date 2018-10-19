@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Pilot</title>
+</head>
+
+<body th:object="${jabatan}">
+    <h2>Hello!</h2>
+    
+    <h3>Update jabatan</h3>
+    <h3 th:text="'Id jabatan' + *{id}"></h3>
+    <form th:action="@{/jabatan/update}" method="POST">
+        <input type="hidden" th:field="*{id}" />
+        <br>
+        Name: <br>
+        <input type="text" name="name" th:value="*{nama}"/>
+        <br>
+        Deskripsi: <br>
+        <input type="text" name="deskripsi" th:value="*{deskripsi}"/>
+        <br>
+        Gaji pokok: <br>
+        <input type="number" name="gajiPokok" th:value="*{gajiPokok}"/>
+        <br><br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+</html>

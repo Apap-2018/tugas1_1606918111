@@ -32,11 +32,35 @@ public class ProvinsiModel implements Serializable{
     @NotNull
     @Size(max=255)
     @Column(name="nama")
-    private String namaProvinsi;
+    private String nama;
 
     @NotNull
     @Column(name="presentase_tunjangan")
     private Double presentaseTunjangan;
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNama() {
+        return this.nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public Double getPresentaseTunjangan() {
+        return this.presentaseTunjangan;
+    }
+
+    public void setPresentaseTunjangan(Double presentaseTunjangan) {
+        this.presentaseTunjangan = presentaseTunjangan;
+    }
 
 
 
