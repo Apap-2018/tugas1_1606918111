@@ -2334,8 +2334,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #006dc1;
+  border-color: #006dc1;
 }
 
 .btn-primary:hover {
@@ -6114,6 +6114,7 @@ button.bg-info:hover,
 button.bg-info:focus {
   background-color: #117a8b !important;
 }
+
 
 .bg-warning {
   background-color: #ffc107 !important;

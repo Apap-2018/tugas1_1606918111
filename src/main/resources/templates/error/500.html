@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.org">
+<head>
+    <!-- <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>404 Not found</title>
+    <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/fragment :: js" th:remove="tag"></Object>  
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+<body>
+    <br><br><br><br>
+    <div class="container">
+        <h1 align="center">500</h1>
+        <h2 align="center">Something went wrong..</h2>
+        <br>
+        <div align="center">
+            <a th:href="@{/}"><button class="btn btn-outline-primary">Go back</button></a>
+        </div>
+
+    </div>
+    
+</body>
+</html>

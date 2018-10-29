@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Tambah Jabatan</title>
+    <title>Tambah Pegawai</title>
     <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
     <Object th:include="fragments/fragment :: js" th:remove="tag"></Object>    
 </head>
@@ -16,7 +16,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-5">
-                    <input type="text" name="nama" class="form-control" placeholder="Nama">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama" th:field="*{nama}">
                 </div>
             </div>
             <!-- <div class="form-group row">
@@ -28,33 +28,34 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tempat lahir</label>
                 <div class="col-sm-5">
-                    <input type="text" name="tempatLahir" class="form-control" placeholder="Tempat lahir">
+                    <input type="text" name="tempatLahir" class="form-control" placeholder="Tempat lahir" th:field="*{tempatLahir}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tanggal lahir</label>
                 <div class="col-sm-5">
-                    <input type="date" name="tanggalLahir" class="form-control">
+                    <input type="date" name="tanggalLahir" class="form-control" th:field="*{tanggalLahir}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tahun masuk</label>
                 <div class="col-sm-5">
-                    <input type="number" name="tahunMasuk" class="form-control">
+                    <input type="number" name="tahunMasuk" class="form-control" th:field="*{tahunMasuk}">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Provinsi</label>
                 <div class="col-sm-5">
-                    <select type="text" name="provinsi" id="provinsi">
+                    <select type="text" name="provinsi" id="provinsi" class="custom-select custom-select-sm-2">
                         <option th:each="provinsi: ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
                     </select> 
                 </div>
             </div>
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Instansi</label>
                 <div class="col-sm-5">
-                    <select type="text" name="instansi" id="instansi">
+                    <select type="text" name="instansi" id="instansi" class="custom-select custom-select-sm-2">
                         <option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:prov="${instansi.provinsi.id}" th:text="${instansi.nama}"></option>
                     </select>
                 </div>
@@ -62,19 +63,20 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Jabatan</label>
                 <div class="col-sm-5" >
-                        <select type="text" th:each="jabatan, iterator : *{jabatanPegawai}" th:field="*{jabatanPegawai[__${iterator.index}__].jabatan}">
+                        <select type="text" th:each="jabatan, iterator : *{jabatanPegawai}" th:field="*{jabatanPegawai[__${iterator.index}__].jabatan}" class="custom-select custom-select-sm-2">
                             <!-- th:field = nambahin jabatan ke jabatanPegawai, soalnya gabisa pake name kayak attribute biasa -->
                             <!-- id dari dropdown nanti di pass ke th:field -->
                             <option th:each="jbtn: ${listJabatan}" th:value="${jbtn.id}" th:text="${jbtn.nama}" ></option>
                         </select> 
                 </div>
+                
             </div>
-            
-            
-            <button type="submit" name="addRow" class="btn btn-primary btn-sm">Add jabatan</button>
-    
-            <br><br><br>
-            <button type="submit">Submit</button>
+            <div class="form-group row">
+                    <label class="col-sm-5 col-form-label"></label>
+        
+                    <button type="submit" name="addRow" class="col-sm-2 btn btn-link">Add jabatan</button>
+            </div>
+            <button type="submit" class="col-sm-7 btn btn-primary">Submit</button>
         </form>
     </div>
 </body>

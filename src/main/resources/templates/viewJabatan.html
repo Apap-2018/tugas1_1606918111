@@ -4,28 +4,39 @@
 
     <title>Detail Jabatan</title>
     <Object th:include="fragments/navbarDetail :: css" th:remove="tag"></Object>
-    <Object th:include="fragments/navbarDetail :: js" th:remove="tag"></Object>  
+<Object th:include="fragments/navbarDetail :: js" th:remove="tag"></Object>  
     
 </head>
 <body th:object="${jabatan}">
-    <nav th:replace="fragments/navbarDetail :: navbarBack"></nav>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
     <br>
     <div class="container">
-
-        <h3 th:text=" 'Detail Jabatan ' + *{nama} "></h3>
-        <p th:text=" 'Nama Jabatan: ' + *{nama}"></p>
-        <p th:text=" 'Deskripsi Jabatan: ' + *{deskripsi}"></p>
-        <p th:text=" 'Gaji Pokok: ' + *{gajiPokok}"></p>
+        <h3 th:text=" 'Detail jabatan '+ *{nama}"></h3>
+        <table class="table" >
+            <tr>
+                <td>Nama:</td>
+                <td th:text="*{nama}"></td>
+            </tr>
+            <tr>
+                <td>Deskripsi:</td>
+                <td th:text="*{deskripsi}"></td>
+            </tr>
+            <tr>
+                <td>Gaji pokok:</td>
+                <td th:text="*{gajiPokok}"></td>
+            </tr>
+        </table>
 
         <br>
 
         <form th:action="@{/jabatan/hapus}" method=POST>
             <input type="hidden"th:field="*{id}">
-            <button type="submit" class="btn btn-danger">DELETE</button>
+            <button type="submit" class="btn btn-danger col-sm-3 float-right">DELETE</button>
         </form>
-        <br><br>
+        <a th:href="@{/jabatan/ubah(idJabatan=*{id})}"><button type="submit" class="btn btn-primary col-sm-3 float-right mr-2" method=GET>UPDATE</button></a>
 
-        <a th:href="@{/jabatan/ubah(idJabatan=*{id})}"><button type="submit" class="btn-btn" method=GET>UPDATE</button></a>
+        <br><br>
+        
     </div>
 
 </body>

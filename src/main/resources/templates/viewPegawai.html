@@ -1,68 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http:/wwww.thymeleaf.org"> 
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-    <title>Cari Pegawai</title>
+
+    <title>Home</title>
     <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
     <Object th:include="fragments/fragment :: js" th:remove="tag"></Object>  
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script> -->
+
 </head>
-<body th:object="${pegawai}">
-        <nav th:replace="fragments/fragment :: navbar(content='Home')"></nav>
-
-    <div class="container" >
+<body>
+    <nav th:replace="fragments/fragment :: navbar(content='Home')"></nav>
+        <div class="container" th:object="${pegawai}">
         <br><br><br>
-            
+            <h1>Sistem informasi kepegawaian</h1>
+            <p>Selamat datang di sistem informasi kepegawaian</p>
+
+            <hr>
+
+            <h3>Data Pegawai</h3>
+            <br>
             <div class="form-group row">
-                    <label class="col-sm-4">NIP</label>
-                    <div class="col-sm-5">
-                        <p th:text="*{nip}"></p>
-                    </div>
+                <label class="col-sm-4">Nama</label>
+                <div class="col-sm-5">
+                    <p th:text="*{nama}"></p>
+                </div>
+                
+                <label class="col-sm-4">Tempat lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tempatLahir}"></p>
+                </div> 
 
-                    <div class="form-group row">
-                            <label class="col-sm-4">Nama</label>
-                            <div class="col-sm-5">
-                                <p th:text="*{nama}"></p>
-                            </div>
-                    
-    
-                    <label class="col-sm-4">Tempat lahir</label>
-                    <div class="col-sm-5">
-                        <p th:text="*{tempatLahir}"></p>
-                    </div> 
-    
-                    <label class="col-sm-4">Tanggal lahir</label>
-                    <div class="col-sm-5">
-                        <p th:text="*{tanggalLahir}"></p>
-                    </div> 
-    
-                    <label class="col-sm-4">Tahun masuk</label>
-                    <div class="col-sm-5">
-                        <p th:text="*{tahunMasuk}"></p>
-                    </div> 
-    
-                    <label class="col-sm-4">Nama instansi</label>
-                    <div class="col-sm-5">
-                        <p th:text="*{instansi.nama}"></p>
-                    </div>
-    
-                    <label class="col-sm-4">Jabatan</label>
-                    <div class="col-sm-5" th:each="jabatan : *{jabatanPegawai}">
-                        <p th:text="${jabatan.jabatan.nama}"></p>
-                    </div> 
-    
-    
-                </div> <br><br>
-    
+                <label class="col-sm-4">Tanggal lahir</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tanggalLahir}"></p>
+                </div> 
 
-        <a th:href="@{/pegawai/ubah(nip=*{nip})}"><button type="submit" method=GET>ubah</button></a>
-        
+                <label class="col-sm-4">Tahun masuk</label>
+                <div class="col-sm-5">
+                    <p th:text="*{tahunMasuk}"></p>
+                </div> 
 
+                <label class="col-sm-4">Nama instansi</label>
+                <div class="col-sm-5">
+                    <p th:text="*{instansi.nama}"></p>
+                </div>
 
-    </div>
-    
-</body>
+                <label class="col-sm-4">Jabatan</label>
+                <div class="col-sm-5" th:each="jabatan : *{jabatanPegawai}">
+                    <p th:text="${jabatan.jabatan.nama}"></p>
+                </div> 
+        </div>
+        <a th:href="@{/pegawai/ubah(nip=${pegawai.nip})}"><button class="btn btn-primary">ubah</button></a>
+        </div>
+    </body>
 </html>

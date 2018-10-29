@@ -14,41 +14,68 @@
             <h1>Sistem informasi kepegawaian</h1>
             <p>Selamat datang di sistem informasi kepegawaian</p>
 
-            <hr>
-            
+            <hr><br>
+
             <h3>Cari pegawai berdasarkan NIP</h3>
+           
             <form th:action="@{/pegawai/view}" method="GET">
             <div class="input-group mb-3">
-                <input type="text" name="nip" class="form-control" placeholder="NIP Pegawai" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" name="nip" class="form-control" placeholder="NIP Pegawai" aria-label="Recipient's username" aria-describedby="button-addon2" required>
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit" id="button-addon2">Cari</button>
                 </div>
             </div>
             </form>
 
+
             <br> <br>
 
-          
+
             <h3>Lihat Detail Jabatan</h3>
-
-            <form th:action="@{/jabatan/view(idJabatan=${idJabatan})}" method=GET>
-                <select type="text" name="idJabatan">
-                    <option th:each="jabatan: ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
-                </select>          
-                <button type="submit">Cari</button>        
-            </form><br><br>
-
-            <h3>Data Pegawai Termuda dan Tertua</h3>
-            <form th:action="@{/pegawai/tertua-termuda(idInstansi=${idInstansi})}" method=GET>
-                <select type="text" name="idInstansi">
-                    <option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"></option>
-                </select>          
-                <button type="submit">Cari</button>        
-            </form>
-
             
 
+            
+            <form th:action="@{/jabatan/view(idJabatan=${idJabatan})}" method=GET>
+                <div class="input-group">
+                <select type="text" name="idJabatan" class="custom-select" id="inputGroupSelect04" required>
+                    <option value="" disabled selected>Pilih jabatan..</option>
+                    <option th:each="jabatan: ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
+                </select>     
+                <div class="input-group-append">    
+                    <button class="btn btn-primary" type="submit" id="button-addon2">Cari</button>  
+                </div>
+                </div>       
+            </form>
 
+            <br><br>
+
+            <!-- yang lama -->
+            <!-- <h3>Data Pegawai Termuda dan Tertua</h3>
+            <div class="input-group">
+                <form th:action="@{/pegawai/tertua-termuda(idInstansi=${idInstansi})}" method=GET>
+                    <select class="custom-select" id="inputGroupSelect04" type="text" name="idInstansi">
+                        <option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"></option>
+                    </select>  
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Cari</button>  
+                    </div>              
+                </form>
+            </div> -->
+
+            
+            <h3>Data Pegawai Termuda dan Tertua</h3>
+            <form th:action="@{/pegawai/tertua-termuda(idInstansi=${idInstansi})}" method=GET>
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect04" type="text" name="idInstansi" required>
+                        <option value="" disabled selected>Pilih instansi..</option>
+                        <option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"></option>
+                </select> 
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Cari</button>  
+                </div>   
+            </div>
+            </form>
+            
 
     </div>
     

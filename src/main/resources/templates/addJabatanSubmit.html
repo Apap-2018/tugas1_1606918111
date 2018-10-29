@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/wwww.thymeleaf.org"> 
 <head>
-    <title>Cari Pegawai</title>
+    <title>Berhasil!</title>
+    <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/fragment :: js" th:remove="tag"></Object> 
 
 </head>
 <body th:object="${jabatan}">
-    <h3>Sukses!</h3>
+    <nav th:replace="fragments/fragment :: navbar(content='Home')"></nav>
+    <br>
+    <div class="container" align="center">
+        <img th:src="@{/images/success.png}" width=100px alt="">
+        <br><br><br>
+        <h3>Sukses!</h3>
         <p th:text=" 'Jabatan '+ *{nama} + ' berhasil ditambahkan' "></p>
-    
-     </div>
-    
+    </div>
 </body>
 </html>

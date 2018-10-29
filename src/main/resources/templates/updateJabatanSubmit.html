@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/wwww.thymeleaf.org"> 
 <head>
-    <title>Cari Pegawai</title>
+    <title>Update jabatan</title>
+    <Object th:include="fragments/fragment :: css" th:remove="tag"></Object>
+    <Object th:include="fragments/fragment :: js" th:remove="tag"></Object>   
 
 </head>
-<body th:switch="${jabatan}">
-    <h3 th:case="null">Maaf jabatan tidak berhasil diupdate</h3>
-    <div th:object="${jabatan}">
-        <p th:text=" 'Nama: '+ *{nama}"></p>
-        <p th:text=" 'Deskripsi: '+ *{deskripsi}"></p>
-        <p th:text=" 'Gaji: '+ *{gajiPokok}"></p>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar(content='Home')"></nav>
+    <br><br>
+    <div th:object="${jabatan}"class="container">
+        <h3 th:text=" 'Jabatan '+ *{nama} + ' berhasil diubah!' "></h3>
+        <table class="table" >
+            <tr>
+                <td>Nama:</td>
+                <td th:text="*{nama}"></td>
+            </tr>
+            <tr>
+                <td>Deskripsi:</td>
+                <td th:text="*{deskripsi}"></td>
+            </tr>
+            <tr>
+                <td>Gaji pokok:</td>
+                <td th:text="*{gajiPokok}"></td>
+            </tr>
+        </table>
+        
     </div>
-    
 </body>
 </html>
